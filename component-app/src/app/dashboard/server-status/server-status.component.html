@@ -1,4 +1,21 @@
-<div id="status">
+<!-- <div [class.status]="currentStatus === 'offline'"> -->
+<!-- the status class will be added only when it meets that condition in above case we are doing dynamic class binding   -->
+<div
+  [class]="{
+    status: true,
+    'status-online': currentStatus === 'online',
+    'status-offline': currentStatus === 'offline',
+    'status-unknown': currentStatus === 'unknown'
+  }"
+>
+  <!-- [style]="{
+    'font-size': '64px'
+  }" -->
+  <!-- can also use short hand notation if we alre targetting only single style like 
+   [style.fontSize] = "'64px'"
+-->
+  <!-- like above i am using styles name saperated with - like font-size then i need to add them in '' like 'font-size' or we can write them in camelcase like fontSize  and remove desh between them this is how we can do this -->
+  <!-- this is adding class dynamically to this div if it meets the condition then it willl added else it will never added to this div -->
   @if (currentStatus === 'online') {
   <p>Servers are online</p>
   <p>All systems are operational.</p>
