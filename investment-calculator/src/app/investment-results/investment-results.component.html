@@ -1,0 +1,48 @@
+@if (!results()){
+<p class="center">Please enter some values and press "calculate"</p>
+} @else {
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Investment Value</th>
+      <th>Interst (Year)</th>
+      <th>Total Intrest</th>
+      <th>Invested Capital</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (result of results(); track result.year) {
+    <tr>
+      <td>{{ result.year }}</td>
+      <td>
+        {{
+          result.valueEndOfYear
+            | currency
+              : "INR"
+              : "symbol"
+              : "4.2-2"
+              : "en-IN" // here 3 will tell minimun no. of integer digit 
+          // here 2 will tell minimun no. of fraction digit 
+          // here 4 will tell maximum no. of fraction digit
+        }}
+      </td>
+      <td>
+        {{ result.interest | currency : "INR" : "symbol" : "4.2-2" : "en-IN" }}
+      </td>
+      <td>
+        {{
+          result.totalInterest | currency : "INR" : "symbol" : "4.2-2" : "en-IN"
+        }}
+      </td>
+      <td>
+        {{
+          result.totalAmountInvested
+            | currency : "INR" : "symbol" : "4.2-2" : "en-IN"
+        }}
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
